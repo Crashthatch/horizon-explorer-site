@@ -11,6 +11,9 @@
         "theme",
         "template"
     ],
+    "scripts": {
+        "sass": "gulp sass"
+    },
     "homepage": "https://startbootstrap.com/template-overviews/creative",
     "bugs": {
         "url": "https://github.com/BlackrockDigital/startbootstrap-creative/issues",

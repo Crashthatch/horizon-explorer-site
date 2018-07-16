@@ -17,3 +17,8 @@ Horizon Explorer uses Unity, ARCore, ARKit, Mapbox, with data from OpenStreetMap
 ## Website Template 
 
 Website source modified (slightly) from the [Start Bootstrap - Creative](https://startbootstrap.com/template-overviews/creative) theme.
+
+## Building CSS
+`git clone git@github.com:Crashthatch/horizon-explorer-site.git`
+`npm install`
+`npm run sass`

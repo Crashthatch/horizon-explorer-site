@@ -1,6 +1,6 @@
 /*!
  * Start Bootstrap - Creative v4.0.0-beta.2 (https://startbootstrap.com/template-overviews/creative)
- * Copyright 2013-2017 Start Bootstrap
+ * Copyright 2013-2018 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-creative/blob/master/LICENSE)
  */
 body,
@@ -39,12 +39,10 @@ h6 {
   background-color: #F05F40 !important; }
 
 .bg-primary a {
-  color: white;
-}
+  color: #fff; }
 
-.bg-primary a.btn{
-  color: #111;
-}
+.bg-primary a.btn {
+  color: #111; }
 
 .bg-dark {
   background-color: #212529 !important; }
