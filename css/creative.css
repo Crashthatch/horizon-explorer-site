@@ -38,6 +38,14 @@ h6 {
 .bg-primary {
   background-color: #F05F40 !important; }
 
+.bg-primary a {
+  color: white;
+}
+
+.bg-primary a.btn{
+  color: #111;
+}
+
 .bg-dark {
   background-color: #212529 !important; }
 
