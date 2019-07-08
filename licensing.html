@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2714250-9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-2714250-9');
+    </script>
+
+    <script>
+      const toastDefaultParams = {
+        showHideTransition: 'fade', // fade, slide or plain
+        allowToastClose: true, // Boolean value true or false
+        hideAfter: 3000, // false to make it sticky or number representing the miliseconds as time after which toast needs to be hidden
+        stack: 5, // false if there should be only one toast at a time or a number representing the maximum number of toasts to be shown at a time
+        position: 'top-center', // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values
+        textAlign: 'left',  // Text alignment i.e. left, right or center
+      }
+      const showSuccessToast = (text) => {
+        $.toast({
+          ...toastDefaultParams,
+          text: text, // Text that is to be shown in the toast
+          icon: 'success', // Type of toast icon
+          loaderBg: '#9EC600'  // Background color of the toast loader
+        });
+      }
+      const showFailureToast = (text) => {
+        $.toast({
+          ...toastDefaultParams,
+          text: text, // Text that is to be shown in the toast
+          icon: 'error', // Type of toast icon
+          loaderBg: '#CA0000'  // Background color of the toast loader
+        });
+      }
+      const sendMessage = () => {
+        return fetch('https://4s1v5v8w2i.execute-api.us-east-1.amazonaws.com/dev/contact', {
+          method: 'POST',
+          cache: 'no-cache',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          redirect: 'follow',
+          referrer: 'no-referrer',
+          body: JSON.stringify({
+            from: $('#from').val(),
+            message: $('#message').val()
+          }),
+        })
+        .then(response => response.json())
+        .then(response => showSuccessToast(response.successMessage))
+        .catch(err => {
+          console.error(err);
+          showFailureToast('Failed to send.');
+        })
+      }
+    </script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Horizon Explorer is an app for identifying hills & landmarks in the distance using Augmented Reality.">
+    <meta name="author" content="Thomas Fletcher">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+
+    <style>
+      .text-muted-on-dark {
+        color: #bec9d3;
+      }
+    </style>
+
+    <title>Horizon Explorer</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="node_modules/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/creative.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Horizon Explorer</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#portfolio">Screenshots</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#download">Download</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/support">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="bg-primary" id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading text-white">Custom Apps Showing Your POIs</h2>
+            <hr class="light my-4">
+            <p class="text-faded mb-4">Make your own app using Horizon Explorer's technology,<br />
+              showing your own AR points & data overlaid on the landscape.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TODO: Big image, showing markers & a point being identified -->
+
+    <section id="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">How It Works</h2>
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-table text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">Your Data</h3>
+              <p class="text-muted mb-0">Upload your data as a csv file, or place your POIs using our drag & drop map editor.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-cloud-download text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">App Stores</h3>
+              <p class="text-muted mb-0">Your customers or employees download via Apple & Google Play app stores.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-map-marker text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">Augmented Reality</h3>
+              <p class="text-muted mb-0">Open the app and see your AR POIs displayed over the real-life camera view.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-newspaper-o text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">Extended Detail</h3>
+              <p class="text-muted mb-0">Point directly to see your POI's entered information, links, distance and altitude.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="editor" class="bg-dark text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5">
+            <h3>Drag & Drop AR Map Editor</h3>
+            <p class="text-muted-on-dark">Drag AR markers onto the map and enter details to be displayed in our browser-based map editor. Or prepare in Excel and upload when ready.</p>
+            <p class="text-muted-on-dark">You choose the type & colour of marker to be displayed, the name & extended information or external links to be displayed when a user points at the real life location.</p>
+            <p class="text-muted-on-dark">It's easy to move markers or update information whenever you want and your users will see the change instantly.</p>
+          </div>
+          <div class="col-lg-7">
+            <img src="img/horizon-editor-landscape2.png" style="width: 100%;" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="information" class="">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <img src="img/portfolio/thumbnails/hill-marker.jpg" style="width: 100%;" alt="">
+          </div>
+          <div class="col-lg-5">
+            <h3>See Your AR Markers</h3>
+            <p class="text-muted">Your users download your app (public or private) from the app store, with a name & logo you choose. They launch it on their phone and see the camera view (just like Horizon Explorer).</p>
+            <p class="text-muted">If they are near an area where you created markers, they will see your points displayed over the camera view. Pointing at a marker will display the custom additional information or link.</p>
+            <p class="text-muted">The user can take a screenshot or share the details of what they are pointing at, eg. to record additional information about the POI.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- Features -->
+
+    <section id="features" class="bg-dark text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Features</h2>
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid p-0">
+        <div class="row no-gutters">
+          <div class="col-lg-4 col-md-6 text-center">
+            <div style="">
+              <img class="img-fluid" src="img/royal-cresent-info-box.jpg" style="object-fit: cover; width: 100%;">
+              <h3 class="mb-3 mt-3">Name & Info</h3>
+              <p class="text-muted-on-dark mb-5" style="margin: auto; max-width: 350px;">Add information & external links to each marker to be displayed when pointed at.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="">
+              <img class="img-fluid" src="img/quest-markers.png" style="object-fit: cover; width: 100%;">
+              <h3 class="mb-3 mt-3">Marker Styles</h3>
+              <p class="text-muted-on-dark mb-5" style="margin: auto; max-width: 350px;">Choose from over 300 styles & colours to allow you to create marker categories.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="">
+              <img class="img-fluid" src="img/white-horse-distance.jpg" style="object-fit: cover; width: 100%;">
+              <h3 class="mb-3 mt-3">Range Finding</h3>
+              <p class="text-muted-on-dark mb-5" style="margin: auto; max-width: 350px;">Measure the distance from the user to any visible marker up to 100km away.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="">
+              <i class="fa fa-4x fa-link text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3 mt-3">External Links</h3>
+              <p class="text-muted-on-dark mb-5" style="margin: auto; max-width: 350px;">Add URLs to markers to show a link when pointed at.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="">
+              <i class="fa fa-4x fa-share-alt-square text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3 mt-3">Share Screenshot</h3>
+              <p class="text-muted-on-dark mb-5" style="margin: auto; max-width: 350px;">Share target location, device ID, GPS position & heading, for easy data collection.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="">
+              <i class="fa fa-4x fa-code text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3 mt-3">No Coding</h3>
+              <p class="text-muted-on-dark mb-5" style="margin: auto; max-width: 350px;">Just download your app & point to see your markers & info displayed on the horizon.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="">
+              <i class="fa fa-4x fa-diamond text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3 mt-3">Tried & Tested </h3>
+              <p class="text-muted-on-dark mb-5" style="margin: auto; max-width: 350px;">Uses the same technology that powers Horizon Explorer, with over 50,000 installs.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="">
+              <i class="fa fa-4x fa-key text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3 mt-3">Secure</h3>
+              <p class="text-muted-on-dark mb-5" style="margin: auto; max-width: 350px;">256-bit TLS encrypts your data, only viewable by your own app's users.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="">
+              <i class="fa fa-4x fa-globe text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3 mt-3">Worldwide</h3>
+              <p class="text-muted-on-dark mb-5" style="margin: auto; max-width: 350px;">Core app, labels and tutorial available in 8 languages. Your content can be in any language.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="usecases">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Use Cases</h2>
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-university text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">Outdoor Attraction Guides</h3>
+              <p class="text-muted mb-0">Create an AR Tour Guide you control, showing points of interest in & around the grounds. </p>
+            </div>
+          </div>
+          <div class="col-lg-4 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-podcast text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">Asset Highlighting & Range-finding</h3>
+              <p class="text-muted mb-0">Measure distance & check line-of-sight to visible assets, up to 100km.</p>
+              <p class="text-muted mb-0">Example use: Telecoms signal checker.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-map-marker text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">Your Use Case</h3>
+              <p class="text-muted mb-0">To discuss how a Geospatial AR app could help your business, please contact us below.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="bg-dark text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading">Contact Us</h2>
+            <hr class="my-4">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 text-center text-muted-on-dark mb-5">
+            Email us at hello@horizon-explorer.com or use the form below.
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 10px;">
+          <div class="col-lg-2 offset-lg-2 text-muted-on-dark">
+            Your Email Address:
+          </div>
+          <div class="col-lg-6">
+            <input type="email" name="from" id="from" style="width: 100%"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-2 offset-lg-2 text-muted-on-dark">
+            Enquiry:
+            </div>
+          <div class="col-lg-6">
+            <textarea style="width: 100%; height: 400px;" id="message"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-10" style="text-align: right;">
+            <button onClick="sendMessage()">Send Message</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="node_modules/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/creative.min.js"></script>
+
+  </body>
+
+</html>
