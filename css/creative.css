@@ -100,8 +100,8 @@ body {
     #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
     #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
       color: #3e9c41; }
-    #mainNav .navbar-nav > li.nav-item > a.nav-link.active,
-    #mainNav .navbar-nav > li.nav-item > a.nav-link:focus.active {
+    #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link.active,
+    #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus.active {
       color: #3e9c41 !important;
       background-color: transparent; }
       #mainNav .navbar-nav > li.nav-item > a.nav-link.active:hover,
